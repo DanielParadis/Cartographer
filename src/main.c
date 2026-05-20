@@ -184,7 +184,7 @@ void buildAssetFile() {
   SDL_CloseIO(io);
   SDL_snprintf(path, 4096, "%s%s", srcDir, "metadata.c");
   io = SDL_IOFromFile(path, "w");
-  char *head = "#include \"Cartographer/cartographer.h\"\n"
+  char *head = "#include \"Cartographer/metadata.h\"\n"
                "CartAnimationMetadata cartAnimationMetadata[ASSET_MAX] = {\n"
                "{0},\n";
   SDL_WriteIO(io, head, SDL_strlen(head));
