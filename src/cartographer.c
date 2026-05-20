@@ -1,4 +1,5 @@
-#include "Cartographer/metadata.h"
+#include "Cartographer/cartographer.h"
+extern struct CartAnimationMetadata *cartAnimationMetadata;
 
 CartFrame *cartGetFrame(CartAnimation *a) {
   return &cartAnimationMetadata[a->id].frames[a->frame];

@@ -57,19 +57,21 @@ target_include_directories(cartographer_headers INTERFACE ${CMAKE_CURRENT_SOURCE
 
 add_library(Cartographer::headers ALIAS cartographer_headers)
 
-add_executable(cartographer 
+add_executable(cartographercli 
     src/main.c
 )
 
-add_executable(Cartographer::cli ALIAS cartographer)
+add_executable(Cartographer::cli ALIAS cartographercli)
 
-target_compile_options(cartographer PRIVATE -g)
+target_include_directories(cartographercli PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+add_library(cartographer STATIC src/cartographer.c)
 target_include_directories(cartographer PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_library(Cartographer::lib ALIAS cartographer)
 
 # Link your game against SDL3 and its extension modules. 
 # This automatically handles includes (-I) and binaries (-l).
-target_link_libraries(cartographer PRIVATE 
+target_link_libraries(cartographercli PRIVATE 
     SDL3::SDL3
     SDL3_image::SDL3_image
 )
