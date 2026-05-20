@@ -172,7 +172,7 @@ void buildAssetFile() {
             "ASSET_NULL,\n";
   char *e = "ASSET_MAX\n"
             "} GFXAssets;\n"
-            "extern CartAnimationMetadata cartAnimationMetadata[ASSET_MAX];\n"
+            "extern CartAnimationMetadata *cartAnimationMetadata;\n"
             "#endif";
   SDL_WriteIO(io, n, SDL_strlen(n));
   for (int i = 0; i < aCount; i++) {
@@ -185,7 +185,7 @@ void buildAssetFile() {
   SDL_snprintf(path, 4096, "%s%s", srcDir, "metadata.c");
   io = SDL_IOFromFile(path, "w");
   char *head = "#include \"Cartographer/metadata.h\"\n"
-               "CartAnimationMetadata cartAnimationMetadata[ASSET_MAX] = {\n"
+               "CartAnimationMetadata *cartAnimationMetadata = (CartAnimationMetadata[]){\n"
                "{0},\n";
   SDL_WriteIO(io, head, SDL_strlen(head));
   for (int i = 0; i < aCount; i++) {
