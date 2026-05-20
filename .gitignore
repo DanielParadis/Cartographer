@@ -1,0 +1,7 @@
+.cache/
+build/
+assets/
+*.png
+include/Cartographer/metadata.h
+src/metadata.c
+cartographer.core
